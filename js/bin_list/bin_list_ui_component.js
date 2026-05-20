@@ -1,30 +1,27 @@
-import CustomersRepository from './customers_client.js';
-export default class CustomersComponent {
-    #customersRepository;
+import CustomersClient from '../customers_client.js';
+
+export default class CustomerListUiComponent {
+    // ATTRIBUTEN
+    #customersClient;
     #customers = [];
 
+    // CONSTRUCTOR
     constructor() {
-        this.#customersRepository =
-            new CustomersRepository();
+        this.#customersClient = new CustomersClient();
         this.#initialiseHTML();
     }
 
+    // METHODES
     async #initialiseHTML() {
-        this.#customers =
-            await this.#customersRepository.getAllCustomers();
+        this.#customers = await this.#customersClient.getCustomers();
         this.#setupSearchBox();
         this.#customersToHTML(this.#customers);
     }
 
     #setupSearchBox() {
-        const searchBox =
-            document.getElementById('search');
+        const searchBox = document.getElementById('search');
         searchBox.addEventListener('keyup', () => {
-            const filtered =
-                this.#customersRepository.filterCustomers(
-                    this.#customers,
-                    searchBox.value
-                );
+            const filtered = this.#customersClient.filterCustomers(this.#customers, searchBox.value);
             this.#customersToHTML(filtered);
         });
         searchBox.focus();
@@ -45,7 +42,7 @@ export default class CustomersComponent {
                         <a href="tel:${customer.phone}">${customer.phone}</a>
                     </div>
                     <p class="card-text"><b>Saldo:</b> €${customer.balance}</p>
-                    <a class="btn btn-success" href="customer_detail.html?id=${customer.id}">Detail</a>
+                    <a class="btn btn-success" href="customer_details.html?id=${customer.id}">Detail</a>
                 </div>
             </div>`;
             customersElement.insertAdjacentHTML('beforeend', strHTML);

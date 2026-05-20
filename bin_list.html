@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RecycleHub - Klanten</title>
+    <title>RecycleHub</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="shortcut icon" href="#">
@@ -17,34 +17,30 @@
             <a class="navbar-brand" href="index.html">🗑️ RecycleHub</a>
             <ul class="navbar-nav ms-auto d-flex flex-row gap-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="customers.html">Klanten</a>
+                    <a class="nav-link" href="customer_list.html">Klanten</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="bins.html">Containers</a>
+                    <a class="nav-link" href="bin_list.html">Containers</a>
                 </li>
             </ul>
         </div>
     </nav>
+
     <div class="container mt-3">
         <main class="d-flex flex-column">
             <div class="panel panel-default bg-white p-4">
                 <div class="panel-body ">
                     <header class="page-header">
-                        <h1>Klanten</h1>
+                        <h1>Containers</h1>
                     </header>
-                    <!-- CUSTOMER COUNT -->
-                    <div id="number"></div>
-                    <!-- SEARCH -->
-                    <div class="form-group mb-3">
-                        <input type="text" class="form-control" id="search" placeholder="Zoek een klant..." />
-                    </div>
-                    <!-- CUSTOMERS TABLE -->
-                    <div id="customers"></div>
+                    
                 </div>
             </div>
         </main>
     </div>
-    <script type="module" src="./js/customers/customers.js"></script>
+
+    
+    <script type="module" src="./js/bins.js"></script>
 </body>
 
 </html>

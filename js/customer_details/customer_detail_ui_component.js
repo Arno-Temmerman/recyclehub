@@ -1,13 +1,12 @@
-import CustomersRepository from './customers_client.js';
+import CustomersClient from '../customers_client.js';
 
-const repository = new CustomersRepository();
+const client = new CustomersClient();
 
 let currentCustomer = null;
 
 init();
 
 async function init() {
-
   const customerId = getCustomerIdFromUrl();
 
   if (!customerId) {
@@ -16,9 +15,7 @@ async function init() {
   }
 
   try {
-
-    currentCustomer = await repository.getCustomerById(customerId);
-
+    currentCustomer = await client.getCustomer(customerId);
     fillForm(currentCustomer);
 
     setupSaveButton();
@@ -102,11 +99,11 @@ function setupSaveButton() {
         }
       };
 
-      await repository.updateCustomer(updatedCustomer);
+      await client.updateCustomer(updatedCustomer);
 
       alert('Klant succesvol bijgewerkt.\n(Merk op dat de klant ongewijzigd zal blijven in het overzicht, aangezien we werken met een mock API.)');
 
-      window.location.href = 'customers.html';
+      window.location.href = 'customer_list.html';
 
     } catch (error) {
 
@@ -130,11 +127,11 @@ function setupDeleteButton() {
 
     try {
 
-      await repository.deleteCustomer(currentCustomer.id);
+      await client.deleteCustomer(currentCustomer.id);
 
       alert('Klant verwijderd.\n(Merk op dat de klant nog aanwezig zal zijn in het overzicht, aangezien we werken met een mock API.)');
 
-      window.location.href = 'customers.html';
+      window.location.href = 'customer_list.html';
 
     } catch (error) {
 

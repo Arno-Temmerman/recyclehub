@@ -11,18 +11,21 @@ export default class Customer {
   #createdAt;
 
   // CONSTRUCTOR
-  constructor(id, firstName, lastName, email, phone, address, balance, bins, createdAt) {
-    this.#id = id;
-    this.#firstName = firstName;
-    this.#lastName = lastName;
-    this.#email = email;
-    this.#phone = phone;
-    this.#address = address;
-    this.#balance = balance;
-    this.#bins = bins;
-    this.#createdAt = createdAt;
-  }
+  constructor(data) {
+    console.log(data)
+    this.#id = data.id;
+    this.#firstName = data.firstName;
+    this.#lastName = data.lastName;
+    this.#balance = data.balance;
 
+    // optional fields (only in detail view)
+    this.#email = data.email;
+    this.#phone = data.phone;
+    this.#address = data.address;
+    this.#bins = data.bins;
+    this.#createdAt = data.createdAt;
+  }
+  
   // METHODES
   get id() {
     return this.#id;
