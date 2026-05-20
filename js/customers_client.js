@@ -10,36 +10,57 @@ export default class CustomersClient {
     }
 
     // METHODES
+    async checkStatus(response) {
+        if (response.ok) {
+            return response;
+        } 
+        else {
+            
+            const httpErrorInfo = {
+                status: response.status,
+                statusText: response.statusText,
+                url: response.url,
+            };
+            console.log(`log server http error: ${JSON.stringify(httpErrorInfo)}`);
+            throw new Error(httpErrorInfo.statusText);
+        }
+    }
+
     async getCustomers() {
-        const response = await fetch(this.#baseUri + '/customers');
+        let response = await fetch(`${this.#baseUri}/customers`);
+        response = await this.checkStatus(response);
         const json = await response.json();
 
         return json.map(customer_json => new Customer(customer_json))
     }
 
     async getCustomer(id) {
-        const response = await fetch(`${this.#baseUri}/customers/${id}`);
+        let response = await fetch(`${this.#baseUri}/customers/${id}`);
+        response = await this.checkStatus(response);
         const json = await response.json()
         
         return new Customer(json)
     }
 
     async updateCustomer(customer) {
-        const response = await fetch(`${this.#baseUri}/customers/${customer.id}`,
+        let response = await fetch(
+            `${this.#baseUri}/customers/${customer.id}`,
             {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(customer)
             }
         );
+        response = await this.checkStatus(response);
 
         return await response.json();
     }
 
     async deleteCustomer(id) {
-        await fetch(`${this.#baseUri}/customers/${id}`, 
+        let response = await fetch(`${this.#baseUri}/customers/${id}`, 
             {
-            method: 'DELETE'
-        });
+                method: 'DELETE'
+            })
+        return await this.checkStatus(response);
     }
 }

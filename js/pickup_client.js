@@ -13,7 +13,6 @@ export default class PickupsClient {
     async getPickups() {
         const response = await fetch(this.#baseUri + '/pickups');
         const json = await response.json();
-        console.log(json)
 
         return json.map(pickup_json => new Pickup(pickup_json))
     }

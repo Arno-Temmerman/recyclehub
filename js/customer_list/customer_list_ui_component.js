@@ -15,19 +15,29 @@ export default class CustomerListUiComponent {
     async #initialiseHTML() {
         this.#customers = await this.#customersClient.getCustomers();
         this.#setupSearchBox();
-        this.#customersToHTML(this.#customers);
+        this.#toHTML(this.#customers);
     }
 
     #setupSearchBox() {
         const searchBox = document.getElementById('search');
         searchBox.addEventListener('keyup', () => {
-            const filtered = this.#customersClient.filterCustomers(this.#customers, searchBox.value);
-            this.#customersToHTML(filtered);
+            const filtered = this.#filterCustomers(searchBox.value);
+            this.#toHTML(filtered);
         });
         searchBox.focus();
     }
 
-    #customersToHTML(customers) {
+    #filterCustomers(searchString) {
+        return !searchString
+        ? this.#customers
+        : this.#customers.filter(customer =>
+            `${customer.firstName} ${customer.lastName}`
+                .toLowerCase()
+                .includes(searchString.toLowerCase())
+            );
+    }
+
+    #toHTML(customers) {
         const numberElement = document.getElementById('number');
         const customersElement = document.getElementById('customers');
         customersElement.innerHTML = '';
@@ -42,7 +52,7 @@ export default class CustomerListUiComponent {
                         <a href="tel:${customer.phone}">${customer.phone}</a>
                     </div>
                     <p class="card-text"><b>Saldo:</b> €${customer.balance}</p>
-                    <a class="btn btn-success" href="customer_details.html?id=${customer.id}">Detail</a>
+                    <a class="btn btn-success" href="customer_details.html?id=${customer.id}">Details</a>
                 </div>
             </div>`;
             customersElement.insertAdjacentHTML('beforeend', strHTML);

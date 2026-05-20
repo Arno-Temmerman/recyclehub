@@ -6,7 +6,6 @@ export default class Pickup {
 
   // CONSTRUCTOR
   constructor(data) {
-    console.log(data)
     this.#id = data.id;
     this.#date = data.date;
     this.#type = data.type;

@@ -12,7 +12,6 @@ export default class Customer {
 
   // CONSTRUCTOR
   constructor(data) {
-    console.log(data)
     this.#id = data.id;
     this.#firstName = data.firstName;
     this.#lastName = data.lastName;

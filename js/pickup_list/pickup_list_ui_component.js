@@ -14,10 +14,10 @@ export default class PickupListUiComponent {
     // METHODES
     async #initialiseHTML() {
         this.#pickups = await this.#pickupsClient.getPickups();
-        this.#pickupsToHTML(this.#pickups);
+        this.#toHTML(this.#pickups);
     }
     
-    #pickupsToHTML(pickups) {
+    #toHTML(pickups) {
         const pickupsElement = document.getElementById('pickups');
         pickupsElement.innerHTML = '';
         
