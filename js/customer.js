@@ -7,7 +7,7 @@ export default class Customer {
   #phone;
   #address;
   #balance;
-  #bins;
+  #pickups;
   #createdAt;
 
   // CONSTRUCTOR
@@ -22,7 +22,7 @@ export default class Customer {
     this.#email = data.email;
     this.#phone = data.phone;
     this.#address = data.address;
-    this.#bins = data.bins;
+    this.#pickups = data.pickups;
     this.#createdAt = data.createdAt;
   }
   
@@ -55,8 +55,8 @@ export default class Customer {
     return this.#balance;
   }
 
-  get bins() {
-    return this.#bins;
+  get pickups() {
+    return this.#pickups;
   }
 
   get createdAt() {

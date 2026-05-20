@@ -84,7 +84,7 @@ function setupSaveButton() {
         email: currentCustomer.email,
         phone: currentCustomer.phone,
         balance: currentCustomer.balance,
-        bins: currentCustomer.bins,
+        pickups: currentCustomer.pickups,
         createdAt: currentCustomer.createdAt,
 
         address: {
