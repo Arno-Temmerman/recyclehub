@@ -1,4 +1,4 @@
-import CustomersRepository from './CustomersRepository.js';
+import CustomersRepository from './customers_repository.js';
 
 export default class CustomersComponent {
     // ATTRIBUTEN
