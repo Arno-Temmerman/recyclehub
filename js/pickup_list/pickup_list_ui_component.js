@@ -16,20 +16,8 @@ export default class PickupListUiComponent {
         this.#pickups = await this.#pickupsClient.getPickups();
         this.#toHTML(this.#pickups);
     }
-    
+
     #toHTML(pickups) {
-        const pickupsElement = document.getElementById('pickups');
-        pickupsElement.innerHTML = '';
-        
-        pickups.forEach(pickup => {
-            const strHTML = `
-            <div class="card mb-3">
-                <h6 class="card-header">${pickup.date}</h6>
-                <div class="card-body">
-                    <p class="card-text">${pickup.type}</p>
-                </div>
-            </div>`;
-            pickupsElement.insertAdjacentHTML('beforeend', strHTML);
-        });
+        throw new Error('Method not implemented yet.');
     }
 }
