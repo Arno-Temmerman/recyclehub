@@ -33,8 +33,7 @@ export default class CustomerListUiComponent {
             : this.#customers.filter(customer =>
                 `${customer.firstName} ${customer.lastName}`
                     .toLowerCase()
-                    .includes(searchString.toLowerCase())
-            );
+                    .includes(searchString.toLowerCase()));
     }
 
     #toHTML(customers) {
