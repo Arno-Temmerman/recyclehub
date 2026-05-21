@@ -41,19 +41,7 @@ export default class CustomersClient {
     }
 
     putCustomer(customerJson) {
-        const uri = `${this.#baseUri}/customers/${customerJson.id}`;
-        const requestOptions = {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(customerJson)
-        };
-
-        return fetch(uri, requestOptions)
-            .then(response => this.checkStatus(response))
-            .then(response => response.json())
-            .catch(error => {
-                console.error('Error putting customer:', error);
-            });
+        throw new Error('Method not implemented yet.');
     }
 
     deleteCustomer(id) {

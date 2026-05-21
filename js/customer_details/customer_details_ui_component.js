@@ -37,17 +37,7 @@ export default class CustomerDetailsUiComponent {
     }
 
     #toCustomerJson(formData) {
-        formData.address = {
-            street: formData.street,
-            postalCode: formData.postalCode,
-            city: formData.city
-        }
-        delete formData.street;
-        delete formData.postalCode;
-        delete formData.city;
-        formData.balance = parseFloat(formData.balance)
-
-        return formData
+        throw new Error('Method not implemented yet.');
     }
 
     #setupSaveButton() {
