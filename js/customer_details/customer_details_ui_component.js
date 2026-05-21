@@ -58,6 +58,7 @@ export default class CustomerDetailsUiComponent {
             const formData = Object.fromEntries(new FormData(form).entries())
             const customerJson = this.#toCustomerJson(formData);
             await this.#customersClient.putCustomer(customerJson);
+
             alert(`Klant succesvol bijgewerkt.\n\n(Merk op dat de klant niet gewijzigd zal zijn in het overzicht, aangezien we werken met een mock API.)`);
             window.location.href = 'customer_list.html';
         });
@@ -68,9 +69,9 @@ export default class CustomerDetailsUiComponent {
 
         deleteButton.addEventListener('click', async () => {
             await this.#customersClient.deleteCustomer(this.#currentCustomer.id);
+
             alert('Klant verwijderd.\n\n(Merk op dat de klant nog aanwezig zal zijn in het overzicht, aangezien we werken met een mock API.)');
             window.location.href = 'customer_list.html';
-
         });
     }
 }
