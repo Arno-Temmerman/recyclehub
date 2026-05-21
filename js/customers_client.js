@@ -42,7 +42,7 @@ export default class CustomersClient {
         return new Customer(json)
     }
 
-    async updateCustomer(customer) {
+    async putCustomer(customer) {
         let response = await fetch(
             `${this.#baseUri}/customers/${customer.id}`,
             {

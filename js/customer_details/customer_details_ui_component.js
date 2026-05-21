@@ -62,7 +62,7 @@ export default class CustomerDetailsUiComponent {
         // Bouw het customer-object op
         //const updatedCustomer = new Customer(data)
 
-        await this.#customersClient.updateCustomer(data);
+        await this.#customersClient.putCustomer(data);
 
         alert('Klant succesvol bijgewerkt.');
         window.location.href = 'customer_list.html';

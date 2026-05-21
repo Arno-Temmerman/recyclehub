@@ -8,7 +8,6 @@ export default class Customer {
   #address;
   #balance;
   #pickups;
-  #createdAt;
 
   // CONSTRUCTOR
   constructor(data) {
@@ -22,7 +21,6 @@ export default class Customer {
     this.#phone = data.phone;
     this.#address = data.address;
     this.#pickups = data.pickups;
-    this.#createdAt = data.createdAt;
   }
   
   // METHODES
@@ -56,9 +54,5 @@ export default class Customer {
 
   get pickups() {
     return this.#pickups;
-  }
-
-  get createdAt() {
-    return this.#createdAt;
   }
 }
