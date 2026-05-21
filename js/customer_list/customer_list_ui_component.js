@@ -39,9 +39,10 @@ export default class CustomerListUiComponent {
 
     #toHTML(customers) {
         const numberElement = document.getElementById('number');
+        numberElement.innerHTML = `<p>Aantal klanten: ${customers.length}</p>`;
+
         const customersElement = document.getElementById('customers');
         customersElement.innerHTML = '';
-        numberElement.innerHTML = `<p>Aantal klanten: ${customers.length}</p>`;
         customers.forEach(customer => {
             const strHTML = `
             <div class="card mb-3">

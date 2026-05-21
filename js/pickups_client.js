@@ -1,4 +1,4 @@
-import Pickup from "./pickup.js"
+import Pickup from "./pickup.js";
 
 export default class PickupsClient {
     // ATTRIBUTEN
@@ -10,10 +10,13 @@ export default class PickupsClient {
     }
 
     // METHODES
-    async getPickups() {
-        const response = await fetch(this.#baseUri + '/pickups');
-        const json = await response.json();
-
-        return json.map(pickup_json => new Pickup(pickup_json))
+    getPickups() {
+        return fetch(`${this.#baseUri}/pickups`)
+            .then(response => response.json())
+            .then(json => json.map(pickup_json => new Pickup(pickup_json)))
+            .catch(error => {
+                console.error('Error getting pickups:', error);
+                throw error;
+            });
     }
 }

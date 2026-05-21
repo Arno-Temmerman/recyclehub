@@ -36,42 +36,30 @@ export default class CustomerDetailsUiComponent {
     document.getElementById('balance').value = this.#currentCustomer.balance;
   }
 
+  #toCustomerJson(formData) {
+    formData.address = {
+        street: formData.street,
+        postalCode: formData.postalCode,
+        city: formData.city
+    }
+    delete formData.street;
+    delete formData.postalCode;
+    delete formData.city;
+    formData.balance = parseFloat(formData.balance)
+    
+    return formData
+  }
+
   #setupSaveButton() {
     const form = document.getElementById('customer-form');
-
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      try {
-        // Lees alle formvelden automatisch uit
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
-        data.address = {
-          street: data.street,
-          postalCode: data.postalCode,
-          city: data.city
-        }
-        data.balance = parseFloat(data.balance)
-
-        // losse velden verwijderen
-        delete data.street;
-        delete data.postalCode;
-        delete data.city;
-
-        // Bouw het customer-object op
-        //const updatedCustomer = new Customer(data)
-
-        await this.#customersClient.putCustomer(data);
-
-        alert('Klant succesvol bijgewerkt.');
-        window.location.href = 'customer_list.html';
-
-      }
-      catch (error) {
-        console.log(error)
-        alert(error.message);
-      }
+      const formData = Object.fromEntries(new FormData(form).entries())
+      const customerJson = this.#toCustomerJson(formData);
+      await this.#customersClient.putCustomer(customerJson);
+      alert(`Klant succesvol bijgewerkt.\n\n(Merk op dat de klant niet gewijzigd zal zijn in het overzicht, aangezien we werken met een mock API.)`);
+      window.location.href = 'customer_list.html';
     });
   }
 
@@ -79,19 +67,10 @@ export default class CustomerDetailsUiComponent {
     const deleteButton = document.getElementById('deleteBtn');
 
     deleteButton.addEventListener('click', async () => {
-      const confirmed = confirm('Ben je zeker dat je deze klant wil verwijderen?');
+      await this.#customersClient.deleteCustomer(this.#currentCustomer.id);
+      alert('Klant verwijderd.\n\n(Merk op dat de klant nog aanwezig zal zijn in het overzicht, aangezien we werken met een mock API.)');
+      window.location.href = 'customer_list.html';
 
-      if (!confirmed)
-        return;
-
-      try {
-        await this.#customersClient.deleteCustomer(this.#currentCustomer.id);
-        alert('Klant verwijderd.\n\n(Merk op dat de klant nog aanwezig zal zijn in het overzicht, aangezien we werken met een mock API.)');
-        window.location.href = 'customer_list.html';
-      }
-      catch (error) {
-        console.log(error)
-      }
     });
   }
 }
