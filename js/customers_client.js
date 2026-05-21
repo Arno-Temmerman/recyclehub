@@ -37,15 +37,7 @@ export default class CustomersClient {
     }
 
     getCustomer(id) {
-        const uri = `${this.#baseUri}/customers/${id}`;
-
-        return fetch(uri)
-            .then(response => this.checkStatus(response))
-            .then(response => response.json())
-            .then(json => new Customer(json))
-            .catch(error => {
-                console.error('Error getting customer:', error);
-            });
+        throw new Error('Method not implemented yet.');
     }
 
     putCustomer(customerJson) {
