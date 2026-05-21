@@ -57,7 +57,8 @@ export default class CustomersClient {
     }
 
     async deleteCustomer(id) {
-        let response = await fetch(`${this.#baseUri}/customers/${id}`, 
+        let response = await fetch(
+            `${this.#baseUri}/customers/${id}`, 
             {
                 method: 'DELETE'
             })

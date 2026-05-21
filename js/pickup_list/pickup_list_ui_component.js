@@ -1,4 +1,4 @@
-import PickupsClient from '../pickup_client.js';
+import PickupsClient from '../pickups_client.js';
 
 export default class PickupListUiComponent {
     // ATTRIBUTEN
