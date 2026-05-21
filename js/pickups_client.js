@@ -10,8 +10,23 @@ export default class PickupsClient {
     }
 
     // METHODES
+    checkStatus(response) {
+        if (response.ok) {
+            return response;
+        } else {
+            const httpErrorInfo = {
+                status: response.status,
+                statusText: response.statusText,
+                uri: response.uri,
+            };
+            console.log(`log server http error: ${JSON.stringify(httpErrorInfo)}`);
+            throw new Error(httpErrorInfo.statusText);
+        }
+    }
+
     getPickups() {
         return fetch(`${this.#baseUri}/pickups`)
+            .then(response => this.checkStatus(response))
             .then(response => response.json())
             .then(json => json.map(pickup_json => new Pickup(pickup_json)))
             .catch(error => {
