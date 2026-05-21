@@ -1,58 +1,58 @@
 export default class Customer {
-  // ATTRIBUTEN
-  #id;
-  #firstName;
-  #lastName;
-  #email;
-  #phone;
-  #address;
-  #balance;
-  #pickups;
+    // ATTRIBUTEN
+    #id;
+    #firstName;
+    #lastName;
+    #email;
+    #phone;
+    #address;
+    #balance;
+    #pickups;
 
-  // CONSTRUCTOR
-  constructor(data) {
-    this.#id = data.id;
-    this.#firstName = data.firstName;
-    this.#lastName = data.lastName;
-    this.#balance = data.balance;
+    // CONSTRUCTOR
+    constructor(data) {
+        this.#id = data.id;
+        this.#firstName = data.firstName;
+        this.#lastName = data.lastName;
+        this.#balance = data.balance;
 
-    // optional fields (only in detail view)
-    this.#email = data.email;
-    this.#phone = data.phone;
-    this.#address = data.address;
-    this.#pickups = data.pickups;
-  }
-  
-  // METHODES
-  get id() {
-    return this.#id;
-  }
+        // optional fields (only in detail view)
+        this.#email = data.email;
+        this.#phone = data.phone;
+        this.#address = data.address;
+        this.#pickups = data.pickups;
+    }
 
-  get firstName() {
-    return this.#firstName;
-  }
+    // METHODES
+    get id() {
+        return this.#id;
+    }
 
-  get lastName() {
-    return this.#lastName;
-  }
+    get firstName() {
+        return this.#firstName;
+    }
 
-  get email() {
-    return this.#email;
-  }
+    get lastName() {
+        return this.#lastName;
+    }
 
-  get phone() {
-    return this.#phone;
-  }
+    get email() {
+        return this.#email;
+    }
 
-  get address() {
-    return this.#address;
-  }
+    get phone() {
+        return this.#phone;
+    }
 
-  get balance() {
-    return this.#balance;
-  }
+    get address() {
+        return this.#address;
+    }
 
-  get pickups() {
-    return this.#pickups;
-  }
+    get balance() {
+        return this.#balance;
+    }
+
+    get pickups() {
+        return this.#pickups;
+    }
 }

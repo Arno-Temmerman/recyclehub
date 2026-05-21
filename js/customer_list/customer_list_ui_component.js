@@ -29,11 +29,11 @@ export default class CustomerListUiComponent {
 
     #filterCustomers(searchString) {
         return !searchString
-        ? this.#customers
-        : this.#customers.filter(customer =>
-            `${customer.firstName} ${customer.lastName}`
-                .toLowerCase()
-                .includes(searchString.toLowerCase())
+            ? this.#customers
+            : this.#customers.filter(customer =>
+                `${customer.firstName} ${customer.lastName}`
+                    .toLowerCase()
+                    .includes(searchString.toLowerCase())
             );
     }
 
